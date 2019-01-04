@@ -183,7 +183,7 @@ def register_request_handlers(app):
     @app.after_request
     def query_profiler(response):
         for q in get_debug_queries():
-            if q.duration >= app.config['BLUE_SLOW_QUERY_THRESHOLD']:
+            if q.duration >= app.config['CJBLOG_SLOW_QUERY_THRESHOLD']:
                 app.logger.warning(
                     'Slow query: Duration: %fs\n Context: %s\nQuery: %s\n'
                     % (q.duration, q.context, q.statement)

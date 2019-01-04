@@ -36,7 +36,7 @@ def manage_post():
     pagination = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, per_page=current_app.config['CJBLOG_MANAGE_POST_PER_PAGE']
     )
-    posts = pagination.items()
+    posts = pagination.items
     return render_template('admin/manage_post.html', page=page, pagination=pagination, posts=posts)
 
 

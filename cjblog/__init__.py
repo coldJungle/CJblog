@@ -21,7 +21,7 @@ def create_app(config_name=None):
     if config_name is None:
         config_name = os.getenv('FLASK_CONFIG', 'development')
 
-    app = Flask('bluelog')
+    app = Flask('cjblog')
     app.config.from_object(config[config_name])
 
     register_logging(app)
@@ -124,7 +124,7 @@ def register_commands(app):
     @click.option('--password', prompt=True, hide_input=True,
                   confirmation_prompt=True, help='The password used to login.')
     def init(username, password):
-        """Building Bluelog, just for you."""
+        """Building CJBlog, just for you."""
         click.echo('Initializing the database...')
         db.create_all()
 
@@ -136,7 +136,7 @@ def register_commands(app):
         else:
             admin = Admin(
                 username=username,
-                blog_title='Bluelog',
+                blog_title='CJBlog',
                 blog_sub_title="This is my blog.",
                 name='Admin',
                 about='Anything about me.'
@@ -159,7 +159,7 @@ def register_commands(app):
     @click.option('--comment', default=500, help='Quantity of comments, default is 500.')
     def forge(category, post, comment):
         """Generate fake data."""
-        from bluelog.fakes import fake_admin, fake_categories, fake_posts, fake_comments, fake_links
+        from cjblog.fakes import fake_admin, fake_categories, fake_posts, fake_comments, fake_links
 
         db.drop_all()
         db.create_all()
